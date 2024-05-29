@@ -21,7 +21,7 @@ public class Policy {
 //	@ManyToOne
 //	@JoinColumn(name = "userId")
 //	private Users user;
-	
+
 //	@OneToMany(mappedBy = "policy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Set<Settlement> settlements;
 

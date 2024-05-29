@@ -1,9 +1,15 @@
 package com.insurance.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,41 +28,44 @@ public class PolicyController {
 
 	@Autowired
 	private PolicyService policyService;
-	
-	//get policy ById
+
+	// get policy ById
 	@GetMapping("/{id}")
 	public Optional<Policy> getPolicyById(@PathVariable("id") Long policyId) {
-		
+
 		return policyService.getPolicyDetailsById(policyId);
 	}
-	
-	//get All policies
+
+	// get All policies
 	@GetMapping("/getAll")
-	public List<Policy> getAllPolicy(){
-		
+	public List<Policy> getAllPolicy() {
+
 		return policyService.getAllPolicyDetails();
-		
+
 	}
-	
-	//add policy rest api
+
+	// add policy rest api
 	@PostMapping("/create")
 	public Policy createPolicy(@RequestBody Policy policy) {
-		
+
 		return policyService.createNewPolicy(policy);
 	}
-	
-	//update policy rest api
+
+	// update policy rest api
 	@PutMapping("/update/{id}")
-	public Policy updatePolicy(@PathVariable("id") Long policyId,@RequestBody Policy policy) {
-		
-		return policyService.updatePolicyById(policyId,policy);
+	public Policy updatePolicy(@PathVariable("id") Long policyId, @RequestBody Policy policy) {
+
+		return policyService.updatePolicyById(policyId, policy);
 	}
-	
-	//delete policy byid rest api
+
+	// delete policy byid rest api
 	@DeleteMapping("/delete/{id}")
 	public void deletePolicy(@PathVariable("id") Long policyId) {
-		
+
 		policyService.deletePolicyById(policyId);
 	}
+
+	// Generate all policy into pdf
 	
+
 }
